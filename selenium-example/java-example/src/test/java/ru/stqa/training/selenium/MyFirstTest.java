@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.Iterator;
 import java.util.List;
 import java.lang.String.*;
-import java.util.ArrayList;
+import java.util.Arrays;
 import static org.openqa.selenium.support.ui.ExpectedConditions.titleIs;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -46,6 +46,24 @@ public class MyFirstTest {
     }
 
     @Test
+    public void stickerTest() {
+        driver.get("http://localhost/litecart/en/");
+        List<String> groupLocators = Arrays.asList("div#box-most-popular li.product", 
+                                                    "div#box-campaigns li.product", 
+                                                    "div#box-latest-products li.product");
+        for(String groupLocator : groupLocators)
+        {
+            List<WebElement> productList = driver.findElements(By.cssSelector(groupLocator));
+            for (int i = 0; i < productList.size(); i++) {
+                String itemNumber = Integer.toString(i + 1);
+                String locator = String.format("%s:nth-child(%s) div.sticker", groupLocator, itemNumber);
+                List<WebElement> stickers = driver.findElements(By.cssSelector(locator));
+                Assert.assertTrue(stickers.size() == 1);
+            }
+        }
+    }
+
+   // @Test
     public void menuTest() {
         driver.get("http://localhost/litecart/admin");
         driver.findElement(By.name("username")).sendKeys("admin");
