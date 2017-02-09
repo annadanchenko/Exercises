@@ -59,6 +59,11 @@ public class GeoZonesTest {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
+   /*
+   1) на странице http://localhost/litecart/admin/?app=countries&doc=countries
+    а) проверить, что страны расположены в алфавитном порядке
+    б) для тех стран, у которых количество зон отлично от нуля -- открыть страницу этой страны и там проверить, что зоны расположены в алфавитном порядке
+    */
     @Test
     public void geoZonesTest1() {
         driver.get("http://localhost/litecart/admin/?app=countries&doc=countries");
@@ -78,6 +83,11 @@ public class GeoZonesTest {
         checkGeoLinks(links, By.xpath("//table[contains(@class, 'dataTable')]/tbody/tr/td[3]/input[@type='hidden']"));
     }
 
+
+    /*
+    2) на странице http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones
+    зайти в каждую из стран и проверить, что зоны расположены в алфавитном порядке
+     */
     @Test
     public void geoZonesTest2() {
         //open page
