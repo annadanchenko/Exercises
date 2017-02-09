@@ -7,9 +7,11 @@ import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.lang.String.*;
+import java.lang.String;
 import java.util.Arrays;
 import static org.openqa.selenium.support.ui.ExpectedConditions.titleIs;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -36,6 +38,9 @@ public class MyFirstTest {
         item.click();
         Assert.assertTrue(isElementPresent(By.cssSelector("h1")));
     }
+
+
+
     @Before
     public void start() {
        // FirefoxBinary bin = new FirefoxBinary(new File("c:\\Program Files\\Nightly\\firefox.exe"));
@@ -44,6 +49,7 @@ public class MyFirstTest {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
+
 
     @Test
     public void stickerTest() {
