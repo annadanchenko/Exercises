@@ -1,5 +1,6 @@
-package ru.stqa.training.selenium;
+package com.dan.tests;
 
+import com.dan.framework.base.TestBase;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -17,9 +18,8 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
-public class GeoZonesTest {
-    private WebDriver driver;
-    private WebDriverWait wait;
+public class GeoZonesTest extends TestBase {
+
 
    private void login() {
         driver.findElement(By.name("username")).sendKeys("admin");
@@ -54,17 +54,13 @@ public class GeoZonesTest {
         }
     }
 
-    @Before
-    public void start() {
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    }
+
    /*
    1) на странице http://localhost/litecart/admin/?app=countries&doc=countries
     а) проверить, что страны расположены в алфавитном порядке
     б) для тех стран, у которых количество зон отлично от нуля -- открыть страницу этой страны и там проверить, что зоны расположены в алфавитном порядке
     */
-    @Test
+  //  @Test
     public void geoZonesTest1() {
         driver.get("http://localhost/litecart/admin/?app=countries&doc=countries");
         login();
@@ -88,7 +84,7 @@ public class GeoZonesTest {
     2) на странице http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones
     зайти в каждую из стран и проверить, что зоны расположены в алфавитном порядке
      */
-    @Test
+   // @Test
     public void geoZonesTest2() {
         //open page
         driver.get("http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones");
@@ -104,9 +100,5 @@ public class GeoZonesTest {
         checkGeoLinks(links, By.xpath("//table[contains(@class, 'dataTable')]/tbody/tr/td[3]/select/option[@selected='selected']"));
     }
 
-    @After
-    public void stop() {
-        driver.quit();
-        driver = null;
-    }
+
 }

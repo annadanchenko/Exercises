@@ -1,5 +1,6 @@
-package ru.stqa.training.selenium;
+package com.dan.tests;
 
+import com.dan.framework.base.TestBase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,32 +23,13 @@ import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 
-public class MyFirstTest {
-    private WebDriver driver;
-    private WebDriverWait wait;
+public class StickersTest extends TestBase {
 
-    public boolean isElementPresent(By locator) {
-        try {
-            return driver.findElements(locator).size() > 0;
-        } catch (InvalidSelectorException ex) {
-            throw ex;
-        }
-    }
+
     void checkItem(By selector){
         WebElement item = driver.findElement(selector);
         item.click();
         Assert.assertTrue(isElementPresent(By.cssSelector("h1")));
-    }
-
-
-
-    @Before
-    public void start() {
-       // FirefoxBinary bin = new FirefoxBinary(new File("c:\\Program Files\\Nightly\\firefox.exe"));
-        // driver = new FirefoxDriver(bin, new FirefoxProfile());
-        //  driver = new InternetExplorerDriver();
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
 
@@ -90,9 +72,5 @@ public class MyFirstTest {
         }
     }
 
-    @After
-    public void stop() {
-        driver.quit();
-        driver = null;
-    }
+
 }

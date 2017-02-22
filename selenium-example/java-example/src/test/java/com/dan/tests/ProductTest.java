@@ -1,5 +1,6 @@
-package ru.stqa.training.selenium;
+package com.dan.tests;
 
+import com.dan.framework.base.TestBase;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -19,23 +20,13 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
-public class ProductTest {
-    private WebDriver driver;
-    private WebDriverWait wait;
+public class ProductTest extends TestBase {
 
     float convertPXtoFloat(String str){
         String conv = str.substring(0, str.length()-2);
         return Float.parseFloat(conv);
     }
 
-    @Before
-    public void start() {
-        driver = new ChromeDriver();
-       //  FirefoxBinary bin = new FirefoxBinary(new File("c:\\Program Files\\Nightly\\firefox.exe"));
-        // driver = new FirefoxDriver(bin, new FirefoxProfile());
-        // driver = new InternetExplorerDriver();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-    }
 
     @Test
     public void productTest() {
@@ -112,11 +103,5 @@ public class ProductTest {
         }
         //г) акционная цена крупнее, чем обычная
         Assert.assertTrue(convertPXtoFloat(campaignPriceSizePDP) > convertPXtoFloat(regularPriceSizePDP));
-    }
-
-    @After
-    public void stop() {
-        driver.quit();
-        driver = null;
     }
 }

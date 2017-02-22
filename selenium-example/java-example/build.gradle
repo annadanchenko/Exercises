@@ -1,4 +1,4 @@
-group 'ad.automation'
+group 'com.dan'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
@@ -13,3 +13,8 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     compile 'org.seleniumhq.selenium:selenium-java:3.0.1'
 }
+
+test {
+    //maxParallelForks = 10
+}
+

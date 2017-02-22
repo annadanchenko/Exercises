@@ -1,27 +1,20 @@
-package ru.stqa.training.selenium;
+package com.dan.tests;
 
-import org.junit.After;
+import com.dan.framework.base.TestBase;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 
-public class AddProductTest {
-    private WebDriver driver;
-    private WebDriverWait wait;
+public class AddProductTest extends TestBase {
 
     private void login() {
         driver.get("http://localhost/litecart/admin");
@@ -42,12 +35,6 @@ public class AddProductTest {
         element.sendKeys(value);
     }
 
-    @Before
-    public void start() {
-        driver = new ChromeDriver();
-        //  driver = new InternetExplorerDriver();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-    }
 
     @Test
     public void addProductTest() {
@@ -106,9 +93,5 @@ public class AddProductTest {
 
         Assert.assertTrue(productTitles.contains(productName));
     }
-    @After
-    public void stop() {
-        driver.quit();
-        driver = null;
-    }
+
 }
