@@ -49,32 +49,14 @@ public class BrowserLogTest {
     public void openInNewTab(WebElement link){
         Actions newTab = new Actions(driver);
         newTab.keyDown(Keys.CONTROL).keyDown(Keys.SHIFT).click(link).keyUp(Keys.CONTROL).keyUp(Keys.SHIFT).build().perform();
-       // Thread.sleep(5000);
-
-  /*      //handle windows change
-        String base = getMyDriver().getWindowHandle();
-        Set<String> set = getMyDriver().getWindowHandles();
-
-        set.remove(base);
-        assert set.size() == 1;
-        getMyDriver().switchTo().window((String) set.toArray()[0]);
-
-//close the window and sitch back to the base tab
-        getMyDriver().close();
-        getMyDriver().switchTo().window(base);*/
     }
-
-
-
 
     @Test
     public void logTest(){
         login();
-
         driver.get("http://localhost/litecart/admin/?app=catalog&doc=catalog&category_id=1");
         String mainWindow = driver.getWindowHandle();
         Set<String> oldWindows = driver.getWindowHandles();
-
         List<WebElement> links = driver.findElements(By.xpath("//table[contains(@class, 'dataTable')]/tbody/tr/td[3]/a"));
         for (WebElement link : links) {
             if (link.getAttribute("href").contains("product_id")) {
@@ -89,31 +71,10 @@ public class BrowserLogTest {
                      }
                      Assert.fail("Browser log contains some entries");
                  }
-               
                 driver.close();
                 driver.switchTo().window(mainWindow);
             }
         }
-
-
-
-        for (LogEntry l : driver.manage().logs().get("browser").getAll()) {
-            System.out.println(l);
-        }
-      /*  List<WebElement> countries = driver.findElements(By.cssSelector("i.fa-pencil"));
-        countries.get(1).click();
-
-        String mainWindow = driver.getWindowHandle();
-        Set<String> oldWindows = driver.getWindowHandles();
-        List<WebElement> links = driver.findElements(By.cssSelector("i.fa-external-link"));
-        for (WebElement link : links) {
-            link.click();
-            String newWindow = wait.until(thereIsWindowOtherThan(oldWindows));
-            driver.switchTo().window(newWindow);
-            driver.findElement(By.tagName("body"));
-            driver.close();
-            driver.switchTo().window(mainWindow);
-        }*/
     }
 
     public ExpectedCondition<String> thereIsWindowOtherThan(Set<String> oldWindows){
